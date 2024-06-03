@@ -9,16 +9,14 @@ const perform = async (z, bundle) => {
 			headers: {
 				accept: "application/json",
 				"Content-Type": "application/json",
-				// Add more headers as required
 			},
 			body: JSON.stringify({
 				url: bundle.inputData.url,
 				path: "/__zapier_Transfomation",
 				tags: bundle.inputData.tags,
-				// Assuming filename is static as per your example
-				access: "public-read", // Assuming access is static as per your example
-				metadata: {}, // Assuming metadata is empty as per your example
-				overwrite: true, // Use provided value or default to false
+				access: "public-read",
+				metadata: {},
+				overwrite: true,
 				filenameOverride: true,
 			}),
 		});
@@ -34,9 +32,6 @@ const perform = async (z, bundle) => {
 		"original",
 		`erase.bg(i:${i},shadow:${shadow},r:${r},mt:${mt})`
 	);
-	// return { url: imagetobeTransformed };
-
-	// start
 	testImageUrl = {
 		url: imagetobeTransformed,
 		method: "GET",
@@ -65,7 +60,6 @@ const perform = async (z, bundle) => {
 	}
 
 	return getStatus();
-	// end
 };
 
 module.exports = {

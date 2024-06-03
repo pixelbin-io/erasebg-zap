@@ -1,11 +1,5 @@
 "use strict";
 
-// You want to make a request to an endpoint that is either specifically designed
-// to test auth, or one that every user will have access to. eg: `/me`.
-// By returning the entire request object, you have access to the request and
-// response data for testing purposes. Your connection label can access any data
-// from the returned response using the `json.` prefix. eg: `{{json.username}}`.
-
 const test = (z, bundle) => {
 	const url = `https://api.pixelbinz0.de/service/platform/organization/v1.0/apps/info`;
 	return z
@@ -13,12 +7,6 @@ const test = (z, bundle) => {
 			url: url,
 		})
 		.then((response) => {
-			z.console.log(
-				"<<<<<< Response fromMMMMMM >>>>>",
-				":",
-				response.json.org.cloudName
-			);
-			// bundle.cloudName = response.json.org.cloudName;
 			return response;
 		})
 		.catch((error) => {
@@ -27,15 +15,9 @@ const test = (z, bundle) => {
 		});
 };
 
-// This function runs after every outbound request. You can use it to check for
-// errors or modify the response. You can have as many as you need. They'll need
-// to each be registered in your index.js file.
 const handleBadResponses = (response, z, bundle) => {
-	// console.log("IN BAD RESPONSE" + response.status);
 	if (response.status === 401) {
-		// console.log("IN ERROR 2", response);
 		throw new z.errors.Error(
-			// This message is surfaced to the user
 			"The API Key you supplied is incorrect testShantanu",
 			"AuthenticationError",
 			response
@@ -44,9 +26,6 @@ const handleBadResponses = (response, z, bundle) => {
 
 	return response;
 };
-
-// This function runs before every outbound request. You can have as many as you
-// need. They'll need to each be registered in your index.js file.
 
 const includeApiKey = (request, z, bundle) => {
 	const url = require("url");
@@ -73,7 +52,6 @@ const includeApiKey = (request, z, bundle) => {
 
 	function encodeRfc3986Full(str) {
 		return str;
-		// return encodeRfc3986(encodeURIComponent(str));
 	}
 
 	const HEADERS_TO_IGNORE = {
@@ -354,9 +332,6 @@ const includeApiKey = (request, z, bundle) => {
 		}
 	}
 
-	// var sToken = "Bearer " + btoa(z.collectionVariables.get("API_TOKEN"));
-	// z.request.headers.add({ key: "Authorization", value: sToken });
-
 	request.headers.Authorization = `Bearer ${btoa(bundle.authData.apiKey)}`;
 	const { host, pathname, search } = new URL(request.url);
 
@@ -376,7 +351,6 @@ const includeApiKey = (request, z, bundle) => {
 
 	let updatedReqData = new RequestSigner(signingOptions).sign();
 
-	// z.request.headers.remove("x-ebg-param");
 	request.headers["x-ebg-param"] = Buffer.from(
 		updatedReqData.headers["x-ebg-param"]
 	).toString("base64");
