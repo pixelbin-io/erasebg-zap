@@ -1,7 +1,7 @@
 "use strict";
 
 const test = (z, bundle) => {
-	const url = `https://api.pixelbinz0.de/service/platform/organization/v1.0/apps/info`;
+	const url = `${process.env.BASE_URL}/service/platform/organization/v1.0/apps/info`;
 	return z
 		.request({
 			url: url,
