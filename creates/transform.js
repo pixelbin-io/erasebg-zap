@@ -74,8 +74,7 @@ module.exports = {
 
 	display: {
 		label: "Remove Background",
-		description:
-			"Creates a PixeBin.io URL of the resource with removed background.",
+		description: "Transforms Image using Pixelbin.io",
 	},
 
 	operation: {
@@ -85,7 +84,8 @@ module.exports = {
 				key: "url",
 				required: true,
 				type: "string",
-				helpText: "URL of the image to upload.",
+				label: "Image/url",
+				helpText: "Image to be transformed.",
 			},
 			{
 				key: "foregroundType",
