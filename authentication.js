@@ -18,7 +18,7 @@ const test = (z, bundle) => {
 const handleBadResponses = (response, z, bundle) => {
 	if (response.status === 401) {
 		throw new z.errors.Error(
-			"The API Key you supplied is incorrect testShantanu",
+			"The API Key you supplied is incorrect",
 			"AuthenticationError",
 			response
 		);
