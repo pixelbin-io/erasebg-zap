@@ -12,7 +12,7 @@ const perform = async (z, bundle) => {
 			},
 			body: JSON.stringify({
 				url: bundle.inputData.url,
-				path: "/__zapier_Transformation",
+				path: "/__zapier/transformations",
 				tags: bundle.inputData.tags,
 				access: "public-read",
 				metadata: {},
@@ -26,11 +26,12 @@ const perform = async (z, bundle) => {
 	let i = bundle.inputData.foregroundType || "general";
 	let shadow = bundle.inputData.addShadow || false;
 	let r = bundle.inputData.refineOutput || true;
-	let mt = bundle.inputData.mattingType || "FineMatte";
+	// let mt = bundle.inputData.mattingType || "FineMatte";
 
 	imagetobeTransformed = imagetobeTransformed.replace(
 		"original",
-		`erase.bg(i:${i},shadow:${shadow},r:${r},mt:${mt})`
+		// `erase.bg(i:${i},shadow:${shadow},r:${r},mt:${mt})`
+		`erase.bg(i:${i},shadow:${shadow},r:${r}`
 	);
 	testImageUrl = {
 		url: imagetobeTransformed,
@@ -67,7 +68,7 @@ module.exports = {
 	noun: "transform",
 
 	display: {
-		label: "Remove Background",
+		label: "Remove Image Background",
 		description: "Transforms Image using Pixelbin.io",
 	},
 
@@ -102,13 +103,16 @@ module.exports = {
 				required: false,
 				type: "boolean",
 			},
-			{
-				key: "mattingType",
-				label: "Matting Type",
-				type: "string",
-				required: false,
-				choices: { GeneralMatte: "General Matte", FineMatte: "Fine Matte" },
-			},
+			// {
+			// 	key: "mattingType",
+			// 	label: "Matting Type",
+			// 	type: "string",
+			// 	required: false,
+			// 	choices: { GeneralMatte: "General Matte", FineMatte: "Fine Matte" },
+			// },
 		],
+		sample: {
+			url: "https://cdn.pixelbin.io/v2/muddy-lab-41820d/t.resize(w:128,h:128)/dummy_image.png",
+		},
 	},
 };

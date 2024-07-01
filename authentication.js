@@ -370,13 +370,13 @@ module.exports = {
 				required: true,
 				type: "password",
 				helpText:
-					"1. Go to [console.pixelbin.io](https://console.pixelbinz0.de/choose-org?redirectTo=settings/apps) and create a free account (you will need to confirm your email). \n2. You can refer our [documentation](https://www.pixelbinz0.de/docs/getting-started) to create account. \n3. After that, you can find your API token [here](https://console.pixelbinz0.de/choose-org?redirectTo=settings/apps).",
+					"1. Visit the [console.pixelbin.io](https://console.pixelbin.io/choose-org?redirectTo=settings/apps) to create a free account (email confirmation required) \n2. For integration, obtain your API Token. Learn about it [here](https://www.pixelbin.io/docs/tokens/) and access your API Token [directly](https://console.pixelbin.io/choose-org?redirectTo=settings/apps)",
 			},
 		],
 
 		test,
 
-		connectionLabel: "{{json.app.name}} ({{json.org.name}})",
+		connectionLabel: "{{json.app.name}}",
 	},
 	befores: [includeApiKey],
 	afters: [handleBadResponses],
