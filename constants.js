@@ -1,4 +1,5 @@
 const packageInfo = require("./package.json");
+
 const integrationVersion = packageInfo.version;
 const zapierCoreVersion = packageInfo.dependencies["zapier-platform-core"];
 
